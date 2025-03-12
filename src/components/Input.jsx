@@ -38,8 +38,16 @@ export const Input = ({ label, type, id, placeholder }) => {
   )
 }
 
-const InputError = () => {
-  return <div>error</div>
+const InputError = ({ message }) => {
+  return (
+    <motion.p
+      className="flex items-center gap-1 px-2 font-semibold text-red-500 bg-red-100 rounded-md"
+      {...framer_error}
+    >
+      <MdError />
+      {message}
+    </motion.p>
+  )
 }
 
 const framer_error = {
