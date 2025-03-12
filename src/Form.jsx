@@ -39,6 +39,7 @@ export const Form = () => {
           <Input {...email_validation} />
           <Input {...num_validation} />
           <Input {...password_validation} />
+          <Input {...desc_validation} className="md:col-span-2" />
         </div>
         <div className="mt-5">
           <button
