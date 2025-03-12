@@ -13,7 +13,13 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { MdError } from 'react-icons/md'
 
 export const Input = ({ label, type, id, placeholder }) => {
-  const { register } = useFormContext()
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
+
+  const inputError = findInputError(errors, label)
+  const isInvalid = isFormInvalid(inputError)
 
   return (
     <div className="flex flex-col w-full gap-2">
@@ -21,6 +27,14 @@ export const Input = ({ label, type, id, placeholder }) => {
         <label htmlFor={id} className="font-semibold capitalize">
           {label}
         </label>
+        <AnimatePresence mode="wait" initial={false}>
+          {isInvalid && (
+            <InputError
+              message={inputError.error.message}
+              key={inputError.error.message}
+            />
+          )}
+        </AnimatePresence>
       </div>
       <input
         id={id}
